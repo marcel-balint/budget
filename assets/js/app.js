@@ -5,6 +5,19 @@ var budgetController = (function () {
         this.id = id;
         this.description = description;
         this.value = value;
+        this.percentage = -1;
+    };
+
+    Expense.prototype.calcPecentage = function (totalIncome) {
+        if (totalIncome > 0) {
+            this.percentage = Math.round((this.value / totalIncome) * 100);
+        } else {
+            this.percentage = -1;
+        }
+    };
+
+    Expense.prototype.getPercentage = function () {
+        return this.percentage;
     };
 
     var Income = function (id, description, value) {
@@ -28,7 +41,7 @@ var budgetController = (function () {
         },
         totals: {
             exp: 0,
-            input: 0
+            inc: 0
         },
         budget: 0,
         percentage: -1,
@@ -84,6 +97,21 @@ var budgetController = (function () {
                 data.percentage = -1;
             }
 
+        },
+
+        calcuatePercentages: function () {
+
+            data.allItems.exp.forEach(function (cur) {
+                cur.calcPecentage(data.totals.inc);
+            });
+
+        },
+
+        getPercentages: function () {
+            var allPercent = data.allItems.exp.map(function (cur) {
+                return cur.getPercentages();
+            });
+            return allPercent;
         },
 
         getBudget: function () {
@@ -216,6 +244,19 @@ var controller = (function (budgetCtrl, UICtrl) {
         UICtrl.displayBudget(budget);
     };
 
+    var updatePrecentages = function () {
+
+        //calculate percentages
+        budgetCtrl.calcuatePercentages();
+
+        //read percentages form the budget controller
+        var percentages = budgetCtrl.getPercentages();
+
+        //update the UI with the new pecentages
+
+        console.log(percentages);
+    };
+
     var ctrlAddItemFunction = function () {
         var input, newItem;
         //get input data
@@ -233,12 +274,16 @@ var controller = (function (budgetCtrl, UICtrl) {
 
             //calculate and update budget
             updateBudget();
+
+            //calculate and update pecentages
+            updatePrecentages();
         }
     };
 
     var ctrlDeleteItem = function (event) {
         var itemId, splitID, type, ID;
         itemId = event.target.parentNode.parentNode.parentNode.parentNode.id;
+        console.log(itemId);
         if (itemId) {
             splitID = itemId.split('-');
             type = splitID[0];
