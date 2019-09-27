@@ -16,7 +16,7 @@
 
 body {
     color: #555;
-    font-family: Open Sans;
+    font-family: 'Open Sans';
     font-size: 16px;
     position: relative;
     height: 100vh;
@@ -320,4 +320,147 @@ h2 {
 
 .unpaid:hover .item__description {
     font-weight: 900;
+}
+
+@media(max-width: 1100px) {
+    .container {
+        display: flex;
+        justify-content: center;
+        width: 828px;
+    }
+}
+
+@media (max-width:860px) {
+    .container {
+        width: 560px;
+    }
+
+    .income {
+        margin-left: -100px;
+        margin-right: 30px;
+    }
+
+    .expenses {
+        margin-right: -107px;
+    }
+
+    .add__description {
+        width: 359px;
+    }
+
+    .add__value {
+        width: 100px;
+        margin-left: -3px;
+    }
+
+}
+
+
+@media(max-width: 800px) {
+    .container {
+        width: 490px;
+    }
+}
+
+@media(max-width: 740px) {
+    .container {
+        width: 442px;
+    }
+}
+
+@media(max-width: 670px) {
+    .add__container {
+        text-align: center;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+    }
+
+    .container {
+        width: 300px;
+    }
+
+    .item__percentage {
+        display: none;
+    }
+}
+
+@media(max-width: 500px) {
+    .add__container {
+        text-align: center;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+    }
+
+    .container {
+        width: 216px;
+    }
+
+    .income {
+        margin-right: 8px;
+    }
+
+
+    .item__value {
+        font-size: small;
+    }
+
+    h2 {
+        font-size: 14px;
+        margin-bottom: 8px;
+    }
+}
+
+@media(max-width: 450px) {
+    .container {
+        width: 159px;
+    }
+}
+
+@media(max-width: 410px) {
+    .add__description {
+        width: 162px;
+        margin-left: 4px;
+    }
+
+    .add__value {
+        width: 75px;
+        margin-left: -7px;
+        margin-right: -12px;
+    }
+
+    .add__type {
+        margin-right: 0px;
+    }
+
+    .add__btn {
+        margin-left: 16px;
+    }
+
+    .budget__income {
+        width: 300px;
+        margin: 0 auto;
+    }
+
+    .budget__expenses {
+        width: 300px;
+        margin: 0 auto;
+    }
+
+    .icome__title {
+        color: #28B9B5;
+        text-align: center;
+    }
+
+    .expenses__title {
+        color: #FF5049;
+        text-align: center;
+    }
+}
+
+@media(max-width: 390px) {
+    .container {
+        width: 100px;
+    }
 }
